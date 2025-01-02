@@ -1,8 +1,8 @@
 import logo from './assets/images/Logo.svg'
 
 function Header() {
-    return <header>
-        <img src={logo} alt="Restaurant logo" />
+    return <header className='header'>
+        <img src={logo} alt="Restaurant logo"/>
     </header>;
 }
 

@@ -2,7 +2,7 @@ import logo from "./assets/images/Logo.svg";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <img src={logo} alt="Restaurant logo" />
       <ul>
         <h6>Contacts</h6>

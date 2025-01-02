@@ -6,12 +6,12 @@ import Footer from './Footer.js'
 
 function App() {
   return (
-    <>
-      <Header/>
-      <Nav/>
+    <div className='container'>
+      <Header className="header"/>
+      <Nav className="navbar"/>
       <Main/>
       <Footer/>
-    </>
+    </div>
   );
 }
 
