@@ -13,7 +13,7 @@ body {
   display: grid;
   min-block-size: 100vh;
   min-block-size: 100dvh;
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: auto;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-flow: row;
   grid-column: auto;
@@ -93,19 +93,20 @@ body {
 }
 
 .hero{
-  display: grid;  /* Change to grid display */
-  grid-template-columns: repeat(2, 1fr);  /* Create two columns */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   gap: 2rem;
   align-items: start;
-  height: 383px;
+  height: auto;
   margin: 0 auto;
   width: 100%;
   max-width: 1200px;
+  padding: 2rem;
 }
 
 .hero-text{
-  grid-column: 1;  /* Place text in first column */
+  grid-column: 1;
   grid-row: 1 / span 3;
   display: grid;
   grid-template-rows: repeat(3,auto);
@@ -135,7 +136,7 @@ body {
 }
 
 .hero-photo{
-  grid-column: 2;  /* Place photo in second column */
+  grid-column: 2;
   grid-row: 1 / span 3;
   width: 397px;
   height: 437px;
@@ -158,24 +159,27 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 
 .card{
   background-color: #EDEFEE;
-  margin: 40px 100px 40px 100px;
+  margin: 40px 0;
   width: 265px;
   height: 439px;
   border-radius: 16px 16px 0px 0px;
-  display: flex;           /* Make card a flex container */
-  flex-direction: column;  /* Stack children vertically */
+  display: flex;
+  flex-direction: column;
 }
 
 .card > * {
-  padding: 0 16px;        /* Add padding to all direct children */
+  padding: 0 16px;
 }
 
 .card > img {
-  padding: 0;             /* Reset padding for image */
+  padding: 0;
   width: 100%;
   height: 185px;
   object-fit: cover;
@@ -190,7 +194,7 @@ body {
 }
 
 .order{
-  margin-top: auto;       /* Push to bottom */
+  margin-top: auto;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -219,4 +223,78 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #495E57;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    grid-template-areas:
+      'header header header header header header header header header header header header'
+      'nav nav nav nav nav nav nav nav nav nav nav nav'
+      'main main main main main main main main main main main main'
+      'footer footer footer footer footer footer footer footer footer footer footer footer';
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 auto;
+  }
+
+  .hero-photo {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    max-width: 397px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-buttons {
+    flex-direction: column;
+  }
+
+  .nav-buttons li {
+    width: 100%;
+  }
+
+  .hero-text > h1 {
+    font-size: 40px;
+  }
+
+  .hero-text > h2 {
+    font-size: 30px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-text > h1 {
+    font-size: 32px;
+  }
+
+  .hero-text > h2 {
+    font-size: 24px;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 265px;
+  }
 }
