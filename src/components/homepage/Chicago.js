@@ -1,5 +1,5 @@
-import Mario_Adrian_A from './assets/images/Mario and Adrian A.jpg';
-import Mario_Adrian_B from './assets/images/Mario and Adrian b.jpg';
+import Mario_Adrian_A from '../../assets/images/Mario and Adrian A.jpg';
+import Mario_Adrian_B from '../../assets/images/Mario and Adrian b.jpg';
 
 function Chicago() {
   return (

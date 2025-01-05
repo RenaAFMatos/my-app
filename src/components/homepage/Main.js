@@ -1,7 +1,7 @@
-import bruschetta from "./assets/images/bruchetta.svg";
-import greek_salad from "./assets/images/greek-salad.jpg";
-import lemon_dessert from "./assets/images/lemon dessert.jpg";
-import restaurant_food from "./assets/images/restauranfood.jpg"
+import bruschetta from "../../assets/images/bruchetta.svg";
+import greek_salad from "../../assets/images/greek-salad.jpg";
+import lemon_dessert from "../../assets/images/lemon dessert.jpg";
+import restaurant_food from "../../assets/images/restauranfood.jpg"
 
 function Main() {
   return (

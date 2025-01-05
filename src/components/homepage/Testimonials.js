@@ -1,7 +1,7 @@
-import Bella from "./assets/images/Bella.jpg";
-import Johnny from "./assets/images/Johnny.jpg";
-import Kim from "./assets/images/Kim.jpg";
-import Silvia from "./assets/images/Silvia.jpg";
+import Bella from "../../assets/images/Bella.jpg";
+import Johnny from "../../assets/images/Johnny.jpg";
+import Kim from "../../assets/images/Kim.jpg";
+import Silvia from "../../assets/images/Silvia.jpg";
 
 function Testimonials() {
   return (
