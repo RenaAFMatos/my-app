@@ -1,25 +1,17 @@
+import { Link, useLocation } from 'react-router-dom';
+
 function Nav() {
+  const location = useLocation();
+  
   return (
     <nav className="nav-bar">
       <ul className="nav-buttons">
-        <li>
-          <a href="/home">Home</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/menu">Menu</a>
-        </li>
-        <li>
-          <a href="/reservations">Reservations</a>
-        </li>
-        <li>
-          <a href="/order-online">Order Online</a>
-        </li>
-        <li>
-          <a href="/login">Login</a>
-        </li>
+        <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
+        <li><Link to="#">About</Link></li>
+        <li><Link to="#">Menu</Link></li>
+        <li><Link to="/reserve-a-table" className={location.pathname === '/reserve-a-table' ? 'active' : ''}>Reservations</Link></li>
+        <li><Link to="#">Order Online</Link></li>
+        <li><Link to="#">Login</Link></li>
       </ul>
     </nav>
   );

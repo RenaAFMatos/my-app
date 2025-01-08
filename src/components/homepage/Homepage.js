@@ -6,16 +6,15 @@ import Footer from '../Footer.js'
 import Testimonials from './Testimonials.js'
 import Chicago from './Chicago.js'
 
-
 function Homepage() {
   return (
-    <div className='container'>
-      <Header className="header"/>
-      <Nav className="navbar"/>
+    <div className="container">
+      <div className="header"><Header/></div>
+      <div className="nav-bar"><Nav/></div>
       <Main/>
       <Testimonials/>
       <Chicago/>
-      <Footer/>
+      <div className="footer"><Footer/></div>
     </div>
   );
 }

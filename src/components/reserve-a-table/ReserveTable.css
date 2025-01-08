@@ -21,24 +21,15 @@ body {
 .container {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    'header'
-    'nav'
-    'content'
-    'footer';
-  
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-areas:
-      'header header header header nav nav nav nav nav nav nav nav'
-      'content content content content content content content content content content content content'
-      'footer footer footer footer footer footer footer footer footer footer footer footer';
-  }
+  width: 100%;
+  overflow-x: hidden;
+  grid-template-columns: repeat(12, 1fr); /* Always use 12 columns */
+  grid-template-rows: auto auto 1fr 1fr auto; /* Define explicit rows */
 }
 
-.header{
-  grid-area: header;
+.header {
+  grid-column: 1 / span 5;
+  grid-row: 1;
   margin-right: 100px;
   display: flex;
   flex-direction: row;
@@ -46,8 +37,9 @@ body {
   margin: 0 5px 0 0;
 }
 
-.nav-bar{
-  grid-area: nav;
+.nav-bar {
+  grid-column: 6 / span 7;
+  grid-row: 1;
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -59,7 +51,7 @@ body {
 .nav-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   list-style: none;
   width: 100%;
   height: 100%;
@@ -72,7 +64,8 @@ body {
   display: flex;
   align-items: stretch;
   height: 100%;
-  flex: 1;
+  flex: 0 1 auto; /* Changed from flex: 1 to allow content-based width */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .nav-buttons li a {
@@ -81,12 +74,12 @@ body {
   justify-content: center;
   text-decoration: none;
   color: #495E57;
-  padding: 0 16px;
+  padding: 0 1rem; /* Adjust padding */
   background-color: #FFFFFF;
   font-weight: 500;
   transition: all 0.3s ease;
   height: 100%;
-  width: 100%;
+  min-width: max-content; /* Ensure button width fits content */
 }
 
 .nav-buttons li a:hover {
@@ -96,25 +89,30 @@ body {
 
 /* Responsive content area */
 .reservation-content {
-  grid-area: content;
+  grid-column: 1/-1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 2rem;
 }
 
-.chooseTable-wrapper{
+.chooseTable-wrapper {
+  grid-column: 1 / -1;
+  grid-row: 2;
   width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #495E57;
-  padding : var(--container-padding);
+  padding: var(--container-padding);
 }
 
 /* Responsive table selection */
 .tables {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); /* Improved responsive columns */
   gap: clamp(1rem, 2vw, 2rem);
-  padding: clamp(1rem, 3vw, 2rem);
+  padding: var(--container-padding);
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -139,6 +137,9 @@ body {
   transition: transform 0.3s ease;
   min-height: 200px;
   height: auto;
+  width: 100%; /* Make tables fill their container */
+  min-width: 200px; /* Minimum width for tables */
+  max-width: 100%; /* Prevent overflow */
 }
 
 .table:hover {
@@ -168,14 +169,20 @@ body {
 }
 
 .form-wrapper {
+  grid-column: 1 / -1; /* Span all 12 columns */
+  grid-row: 3;
   width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #FDF4EE;
   padding: var(--container-padding);
 }
 
 /* Responsive form */
 .form {
-  width: min(100%, 600px);
+  width: min(100% - 2rem, 600px); /* Better responsive width with padding */
   padding: clamp(1rem, 3vw, 2rem);
   margin: 0 auto;
   display: grid;
@@ -221,16 +228,17 @@ body {
 }
 
 /* Responsive footer */
-.footer{
-  grid-area: footer;
+.footer {
+  grid-column: 1 / span 12; /* Span all 12 columns */
+  grid-row: 4;
+  width: 100%;
+  margin: 0;
   display: flex;
   flex-direction: row;
   flex: 1;
   justify-content: space-around;
-  /* align-items: flex-start; */
   background-color: #D9D9D9;
   padding: clamp(1rem, 3vw, 2rem);
-  width: 100vw;
 }
 
 /* Media Queries */
@@ -241,12 +249,54 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'nav'
+      'tables'
+      'form'
+      'footer';
+    gap: 0.5rem; /* Smaller gap on mobile */
+  }
+
+  .header,
+  .nav-bar {
+    grid-column: 1 / -1;
+    padding: 0.5rem;
+  }
+
+  .chooseTable-wrapper {
+    grid-row: 3;
+  }
+
+  .form-wrapper {
+    grid-row: 4;
+  }
+
+  .footer {
+    grid-row: 5;
+  }
+
   .nav-buttons {
     flex-direction: column;
+    align-items: center; /* Center buttons on mobile */
+    gap: 0.5rem; /* Smaller gap on mobile */
+  }
+
+  .nav-buttons li {
+    width: auto; /* Let width be determined by content */
+    min-width: 150px; /* Minimum width on mobile */
   }
 
   .tables {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr; /* Single column on small screens */
+    padding: 1rem;
+  }
+
+  .table {
+    margin: 0 auto;
+    width: min(100%, 350px); /* Controlled width on mobile */
   }
 
   .form {
@@ -278,6 +328,19 @@ body {
 
   input[type="submit"] {
     width: 100%;
+  }
+}
+
+/* Add more specific breakpoints */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .tables {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tables {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Flexible columns on large screens */
   }
 }
 
